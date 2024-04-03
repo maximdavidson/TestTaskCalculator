@@ -1,28 +1,17 @@
-import React, { Component } from 'react'
+import React from 'react'
 import c from './Display.module.css'
+import PropTypes from 'prop-types';
 
-class Display extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      displayValue: '0'
-    };
-  }
-
-  componentDidUpdate(prevProps) {
-    // Обновляем состояние displayValue, когда props обновляются
-    if (prevProps.inputValue !== this.props.inputValue) {
-      this.setState({ displayValue: this.props.inputValue });
-    }
-  }
-
-  render() {
-    return (
-      <div>
-        <p className={c.disp}>{this.state.displayValue}</p>
-      </div>
-    );
-  }
+function Display({ displayValue }) {
+  return (
+    <div>
+      <p className={c.disp}>{displayValue}</p>
+    </div>
+  );
 }
 
-export default Display
+Display.propTypes = {
+  displayValue: PropTypes.string.isRequired,
+};
+
+export default Display;
