@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import c from './Header.module.css'
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
    render() {
@@ -7,8 +8,8 @@ class Header extends Component {
          <div className={c.header}>
             <h3 className={c.title}>Calculator App</h3>
             <nav className={c.nav}>
-               <a href=''>Home</a>
-               <a href=''>Settings</a>
+               <Link to='/home'>Home</Link>
+               <Link to='/settings'>Settings</Link>
             </nav>
          </div>
       )

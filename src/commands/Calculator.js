@@ -1,30 +1,41 @@
 import Command from './command';
 
-class Calculator{
-   constructor(){
-      this.currentValue = 0;
-      this.commands = [];
+class Calculator {
+   constructor() {
+     this.currentValue = 0;
+     this.commands = [];
+     this.addCommand = new Command((currentValue, value) => currentValue + value, (currentValue, value) => currentValue - value, 0);
+     this.subtractCommand = new Command((currentValue, value) => currentValue - value, (currentValue, value) => currentValue + value, 0);
+     this.multiplyCommand = new Command((currentValue, value) => currentValue * value, (currentValue, value) => currentValue / value, 1);
+     this.divideCommand = new Command((currentValue, value) => currentValue / value, (currentValue, value) => currentValue * value, 1);
+     this.pendingOperation = null;
    }
-
-   executeCommand(command){
-      this.currentValue = command.execute(this.currentValue, command.value);
-      this.commands.push(command);
+ 
+   executeCommand(command) {
+     this.currentValue = command.execute(this.currentValue, command.value);
+     this.commands.push(command);
    }
-
-   undoLastCommand(){
-      const command = this.commands.pop();
-      this.currentValue = command.undo(this.currentValue, command.value);
+ 
+   undoLastCommand() {
+     const command = this.commands.pop();
+     this.currentValue = command.undo(this.currentValue, command.value);
    }
-}
+ 
+   equalCommand() {
+      if (this.pendingOperation) {
+        this.executeCommand(this.pendingOperation);
+        this.pendingOperation = null;
+      }
+    }
 
-// Команды
-const addCommand = new Command((currentValue, value) => currentValue + value, (currentValue, value) => currentValue - value);
-const subtractCommand = new Command((currentValue, value) => currentValue - value, (currentValue, value) => currentValue + value);
-const multiplyCommand = new Command((currentValue, value) => currentValue * value, (currentValue, value) => currentValue / value);
-const divideCommand = new Command((currentValue, value) => currentValue / value, (currentValue, value) => currentValue * value);
-
-export default Calculator;
-export { addCommand, subtractCommand, multiplyCommand, divideCommand };
+ 
+   setPendingOperation(operation) {
+     this.pendingOperation = operation;
+   }
+ }
+ 
+ export default Calculator;
+ 
 
 
 
