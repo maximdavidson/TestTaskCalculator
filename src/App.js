@@ -19,6 +19,7 @@ function App() {
       <div className="app-wrapper"> 
         <Header/>
         <Routes>
+          <Route path='/' element={<CalculatorComponent/>}/>
           <Route path='/home' element={<CalculatorComponent/>}/>
           <Route path='/settings' element={<Settings/>}/>
         </Routes>
