@@ -1,5 +1,5 @@
 import React from "react";
-import { useTheme } from "../../ThemeContext";
+import { useTheme } from "../../theme/ThemeContext";
 import styled from 'styled-components'
 
 const Wrapper = styled.div`

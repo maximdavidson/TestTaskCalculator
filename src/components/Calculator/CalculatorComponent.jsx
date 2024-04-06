@@ -2,12 +2,19 @@ import React, { useState } from "react";
 import Display from "../Display/Display";
 import Keypad from "../Keypad/Keypad";
 import {SelectOperatorCommand, PerformOperationCommand, ResetCommand } from '../../commands/Calculator';
+import c from './CalculatorComponent.module.css'
+import History from "../History/History";
+import ControlPanel from "../History/ControlPanel";
 
 function CalculatorComponent(){
    const [displayValue, setDisplayValue] = useState('0');
    const [operator, setOperator] = useState(null);
    const [value, setValue] = useState(null);
    const [waitingForSecondOperand, setWaitingForSecondOperand] = useState(false);
+   const [history, setHistory] = useState([]);
+   const [isHistoryVisible, setIsHistoryVisible] = useState(false);
+
+
 
    const handleButtonClick = (buttonValue) => {
       if (displayValue.length >= 18){
@@ -59,19 +66,25 @@ function CalculatorComponent(){
    };
 
    const performOperation = () => {
-      if (operator && value != null) {
-         const currentValue = parseFloat(displayValue);
-         const newValue = calculate(value, operator, currentValue);
-         setDisplayValue(String(newValue));
-         setValue(null);
-         setOperator(null);
-      }
-   };
+   if (operator && value != null) {
+      const currentValue = parseFloat(displayValue);
+      const newValue = calculate(value, operator, currentValue);
+      const operation = `${value} ${operator} ${currentValue} = ${newValue}`;
+      setHistory([...history, operation]);
+      setDisplayValue(String(newValue));
+      setValue(null);
+      setOperator(null);
+   }
+};
 
    const reset = () => {
       setDisplayValue('0');
       setValue(null);
       setOperator(null);
+   };
+
+   const toggleHistoryVisibility = (isVisible) => {
+      setIsHistoryVisible(isVisible);
    };
 
    const calculator = {
@@ -81,12 +94,22 @@ function CalculatorComponent(){
       reset
    };
 
+   
    return (
-      <div>
-        <Display displayValue={displayValue} />
-        <Keypad onButtonClick={handleButtonClick} />
+      <div className={c.calculator_container}>
+         <div className={c.calculator}>
+            <Display displayValue={displayValue} />
+            <Keypad onButtonClick={handleButtonClick} />
+         </div>
+         <div className={c.history}>
+         <div className={c.toggle_position}>
+            <h2>History</h2>
+            <ControlPanel onToggleHistory={toggleHistoryVisibility} />
+         </div>
+            {isHistoryVisible && <History history={history} />}
+         </div>
       </div>
-    );
+   );
 }
 
 function calculate(firstValue, operator, secondValue) {

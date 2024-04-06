@@ -1,0 +1,20 @@
+.calculator_container {
+   display: flex;
+}
+
+.calculator {
+   flex: 4;
+   margin-right: 20px; /* Регулируйте отступ справа по желанию */
+}
+
+.history {
+   margin-top: 20px;
+   align-items: center;
+   flex: 1;
+}
+
+.toggle_position{
+   display: flex;
+   align-items: center;
+   gap: 15px ;
+}
