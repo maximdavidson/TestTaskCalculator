@@ -5,6 +5,7 @@ import {SelectOperatorCommand, PerformOperationCommand, ResetCommand } from '../
 import c from './CalculatorComponent.module.css'
 import History from "../History/History";
 import ControlPanel from "../History/ControlPanel";
+import { useHistoryContext } from "../History/HistoryContext";
 
 function CalculatorComponent(){
    const [displayValue, setDisplayValue] = useState('0');
@@ -13,6 +14,7 @@ function CalculatorComponent(){
    const [waitingForSecondOperand, setWaitingForSecondOperand] = useState(false);
    const [history, setHistory] = useState([]);
    const [isHistoryVisible, setIsHistoryVisible] = useState(false);
+   const {addHistoryItem} = useHistoryContext();
 
 
 
@@ -74,6 +76,7 @@ function CalculatorComponent(){
       setDisplayValue(String(newValue));
       setValue(null);
       setOperator(null);
+      addHistoryItem(operation);
    }
 };
 

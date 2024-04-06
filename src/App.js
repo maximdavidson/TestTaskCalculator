@@ -8,8 +8,7 @@ import { GlobalStyles } from './theme/GlobalStyles'; // Импортируйте
 import { lightTheme, darkTheme } from './theme/theme'; // Импортируйте темы
 import { ThemeProvider as StyledThemeProvider } from 'styled-components'; // Импортируйте ThemeProvider из styled-components
 import { useTheme } from './theme/ThemeContext'; // Используйте ваш хук useTheme
-// import History from './components/History/History';
-// import ControlPanel from './components/History/ControlPanel';
+import { HistoryProvider } from './components/History/HistoryContext';
 
 function App() {
   const { theme } = useTheme(); // Получите текущую тему
@@ -17,18 +16,16 @@ function App() {
   return (
     <StyledThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <GlobalStyles />
+      <HistoryProvider>
       <div className="app-wrapper"> 
-        <Header/>
-        <Routes>
-          <Route path='/' element={<CalculatorComponent/>}/>
-          <Route path='/home' element={<CalculatorComponent/>}/>
-          <Route path='/settings' element={<Settings/>}/>
-        </Routes>
-        {/* <div className='history'>
-          <History/>
-          <ControlPanel/>
-        </div> */}
-      </div>
+          <Header/>
+          <Routes>
+            <Route path='/' element={<CalculatorComponent/>}/>
+            <Route path='/home' element={<CalculatorComponent/>}/>
+            <Route path='/settings' element={<Settings/>}/>
+          </Routes>
+        </div>
+      </HistoryProvider> 
     </StyledThemeProvider>
   );
 }

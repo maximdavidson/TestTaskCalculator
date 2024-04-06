@@ -1,6 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import { useTheme } from "../../theme/ThemeContext";
+import { useHistoryContext } from "../History/HistoryContext";
 import styled from 'styled-components'
+import Snackbar from "./Snackbar";
+
 
 const Wrapper = styled.div`
   margin-left: 70px;
@@ -25,11 +28,38 @@ const Option = styled.option`
   font-size: 15px;
 `;
 
+const Button = styled.button`
+  padding: 12px 35px;
+  border: none;
+  border-radius: 5px;
+  background-color: #595959;
+  color: white;
+  cursor: pointer;
+  margin-top: 20px; 
+
+  &:hover {
+    background-color: #707070;
+  }
+
+  &:active {
+    position: relative;
+    top: 4px;
+  }
+`;
+
 function Settings(){
-  const { theme, setTheme } = useTheme(); // Используйте функцию setTheme из контекста
+  const { theme, setTheme } = useTheme();
+  const {clearHistory} = useHistoryContext();
+  const [isSnackbarVisible, setIsSnackbarVisible] = useState(false); // Состояние для контроля видимости Snackbar
 
   const handleThemeChange = (event) => {
     setTheme(event.target.value);
+  };
+
+  const handleClearHistory = () => {
+    clearHistory();
+    // После очистки истории, отображаем Snackbar с сообщением
+    setIsSnackbarVisible(true);
   };
 
   return(
@@ -41,9 +71,13 @@ function Settings(){
              <Option value='light'>Light theme</Option>
              <Option value='dark'>Dark theme</Option>
           </Select>
+          <Button onClick={handleClearHistory}>Clear History</Button>
+          <Snackbar isVisible={isSnackbarVisible} message="History cleared" />
        </div>
     </Wrapper>
   )
 }
+
+
 
 export default Settings;
