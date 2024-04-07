@@ -48,6 +48,19 @@ function CalculatorComponent(){
         } else {
           setDisplayValue('0')
         }
+      } else if (buttonValue === '+/-') {
+         setDisplayValue(prevValue => {
+            if(prevValue !== '0'){
+               // Если текущее значение не равно нулю, меняем его знак
+               return (parseFloat(prevValue) * -1).toString();
+            } else{
+               return prevValue
+            }
+         });
+         return
+      } else if ('%'.includes(buttonValue)) {
+         const selectOperatorCommand = new SelectOperatorCommand(calculator, buttonValue);
+         selectOperatorCommand.execute();
       }
    };
 
@@ -125,6 +138,8 @@ function calculate(firstValue, operator, secondValue) {
       result =  firstValue * secondValue;
    } else if (operator === '/') {
       result =  firstValue / secondValue;
+   } else if (operator === '%') {
+      result =  firstValue % secondValue;
    } else {
       result =  secondValue;
    }
@@ -188,3 +203,4 @@ export default CalculatorComponent;
 // Этот подход позволяет отделить логику выполнения операций от логики обработки пользовательского
 //  интерфейса, делая код более модульным и упрощая добавление новых функций без изменения 
 // существующего кода обработчиков событий.
+

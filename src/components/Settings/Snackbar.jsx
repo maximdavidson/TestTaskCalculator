@@ -31,7 +31,7 @@ const Snackbar = ({ message, isVisible }) => {
 
  Snackbar.propTypes = {
    message: PropTypes.string.isRequired,
-   isVisible: PropTypes.string.isRequired,
+   isVisible: PropTypes.bool.isRequired,
  };
  
  export default Snackbar;

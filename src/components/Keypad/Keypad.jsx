@@ -4,11 +4,15 @@ import c from './Keypad.module.css'
 
 function Keypad({ onButtonClick }) {
   const [selectedButton, setSelectedButton] = useState(null);
-  const buttons = ['C','7', '8', '9', '*', '-',  '4', '5', '6', '/', '+', '1', '2', '3', '=', '.', '(', '0', ')', 'CE']
+  const buttons = ['C','7', '8', '9', '*', '-',  '4', '5', '6', '/', '+', '1', '2', '3', '=', '.', '+/-', '0', '%', 'CE']
 
   const handleClick = (button) => {
     setSelectedButton(button);
     onButtonClick(button);
+  }
+
+  const toggleSign = () => {
+    onButtonClick('+/-')
   }
 
   return (
@@ -17,7 +21,7 @@ function Keypad({ onButtonClick }) {
         <button 
           key={button} 
           className={button === selectedButton ? c.selectedButton : c.button} 
-          onClick={() => handleClick(button)}
+          onClick={button === '+/-' ? toggleSign : () => handleClick(button)}
         >
           {button}
         </button>
