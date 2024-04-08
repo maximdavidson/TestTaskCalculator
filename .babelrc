@@ -1,3 +1,11 @@
 {
-   "presets": ["@babel/preset-env"] // который автоматически определяет плагины Babel, которые нужны, на основе вашей целевой среды.
+   "presets": ["@babel/preset-env", "@babel/preset-react"],
+   "plugins": [
+      ["module-resolver", {
+        "root": ["./src"],
+        "alias": {
+          "@components": "./components"
+        }
+      }]
+    ]
 }

@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
-const HistoryContext = createContext();
+export const HistoryContext = createContext();
 
 export const useHistoryContext = () => useContext(HistoryContext); // Функция для удобного доступа к контексту
 
