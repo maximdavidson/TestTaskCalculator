@@ -5,6 +5,10 @@ import { useHistoryContext } from "./HistoryContext";
 function History() {
   const { history } = useHistoryContext();
 
+  // if(history.length > 2){
+  //   throw new Error('Test error for Error Boundary');
+  // }
+
   return (
     <div className="history">
       <ul>

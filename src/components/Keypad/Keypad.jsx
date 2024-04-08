@@ -7,12 +7,20 @@ function Keypad({ onButtonClick }) {
   const buttons = ['C','7', '8', '9', '*', '-',  '4', '5', '6', '/', '+', '1', '2', '3', '=', '.', '+/-', '0', '%', 'CE']
 
   const handleClick = (button) => {
-    setSelectedButton(button);
-    onButtonClick(button);
+    try {
+      setSelectedButton(button);
+      onButtonClick(button);
+    } catch (error) {
+      console.error(error);
+    }
   }
-
+  
   const toggleSign = () => {
-    onButtonClick('+/-')
+    try {
+      onButtonClick('+/-');
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
