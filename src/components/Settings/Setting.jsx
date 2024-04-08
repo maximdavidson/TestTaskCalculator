@@ -1,6 +1,6 @@
 import React from "react";
-import { ThemeContext } from "../../theme/ThemeContext";
-import { HistoryContext } from "../History/HistoryContext";
+import { ThemeContext } from "@theme/ThemeContext";
+import { HistoryContext } from "@components/History/HistoryContext";
 import styled from 'styled-components'
 import Snackbar from "./Snackbar";
 

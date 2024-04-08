@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Display from "../Display/Display";
-import Keypad from "../Keypad/Keypad";
-import {SelectOperatorCommand, PerformOperationCommand, ResetCommand } from '../../commands/Calculator';
+import Display from "@components/Display/Display";
+import Keypad from "@components/Keypad/Keypad";
+import {SelectOperatorCommand, PerformOperationCommand, ResetCommand } from '@commands/Calculator';
 import c from './CalculatorComponent.module.css'
-import History from "../History/History";
-import ControlPanel from "../History/ControlPanel";
-import { useHistoryContext } from "../History/HistoryContext";
+import History from "@components/History/History";
+import ControlPanel from "@components/History/ControlPanel";
+import { useHistoryContext } from "@components/History/HistoryContext";
 
 function CalculatorComponent(){
    const [displayValue, setDisplayValue] = useState('0');
