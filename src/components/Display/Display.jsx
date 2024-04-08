@@ -6,7 +6,7 @@ class Display extends React.Component {
   render() {
     return (
       <div>
-        <p className={c.disp}>{this.props.displayValue}</p>
+        <p className={c.disp} id='display'>{this.props.displayValue}</p>
       </div>
     );
   }
