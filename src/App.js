@@ -17,21 +17,20 @@ function App() {
   return (
     <ErrorBoundary>
       <StyledThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-            <GlobalStyles />
-            <HistoryProvider>
-            <div className="app-wrapper"> 
-                <Header/>
-                <Routes>
-                  <Route path='/' element={<CalculatorComponent/>}/>
-                  <Route path='/home' element={<CalculatorComponent/>}/>
-                  <Route path='/settings' element={<Settings/>}/>
-                </Routes>
-              </div>
-            </HistoryProvider> 
-          </StyledThemeProvider>
+        <GlobalStyles />
+        <HistoryProvider>
+          <div className="app-wrapper">
+            <Header />
+            <Routes>
+              <Route path="/" element={<CalculatorComponent />} />
+              <Route path="/home" element={<CalculatorComponent />} />
+              <Route path="/settings" element={<Settings />} />
+            </Routes>
+          </div>
+        </HistoryProvider>
+      </StyledThemeProvider>
     </ErrorBoundary>
   );
 }
 
 export default App;
-

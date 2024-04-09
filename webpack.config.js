@@ -1,20 +1,32 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.js', // точка входа вашего приложения
+  entry: {
+    main: path.resolve(__dirname, './src/index.js'),
+  },
   output: {
-    filename: 'mainweb.js', // имя выходного файла
-    path: path.resolve(__dirname, 'dist'), // путь к каталогу выходных файлов
+    path: path.resolve(__dirname, './dist'),
+    filename: '[name].bundle.js',
   },
   module: {
     rules: [
       {
-        test: /\.js$/, // регулярное выражение, которое ищет все файлы .js
-        exclude: /node_modules/, // исключает все файлы в каталоге node_modules
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
         use: {
-          loader: 'babel-loader', // использует babel-loader для транспиляции вашего кода
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
         },
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
 };
+
+
+// yarn build:webpack
