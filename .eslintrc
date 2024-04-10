@@ -1,41 +1,12 @@
 {
   "parser": "@babel/eslint-parser",
-   "extends": ["eslint:recommended", "plugin:react/recommended"],
-   "env": {
-     "browser": true,
-     "node": true,
-     "es6": true
-   },
-   "rules": {
-    "no-unused-vars": [
-      "error",
-      { "argsIgnorePattern": "^on[A-Z][a-z]*$" }
-    ]
-  }
- }
- 
-
-
-
-
-
-
-
-
- 
-// "parser": "@babel/eslint-parser": Это указывает ESLint использовать @babel/eslint-parser 
-// для анализа вашего кода. Это позволяет ESLint понимать синтаксис, который вы используете 
-// с Babel.
-// "extends": Это список конфигураций, которые ESLint будет использовать в качестве 
-// базовыхeslint:recommended включает набор базовых правил ESLint, 
-// а plugin:react/recommended включает рекомендуемые правила для React.
-// "env": Это определяет глобальные переменные, которые будут доступны в вашем коде. 
-// В данном случае, browser: true позволяет использовать глобальные переменные браузера,
-// node: true позволяет использовать глобальные переменные Node.js, 
-// а es6: true позволяет использовать новые глобальные переменные ES6.
-// "rules": Здесь вы можете переопределить настройки для конкретных правил ESLint. 
-// В данном случае, правило no-unused-vars установлено на error, что означает, 
-// что ESLint будет сообщать об ошибке, если найдет неиспользуемую переменную. 
-// Опция argsIgnorePattern позволяет игнорировать аргументы, которые 
-// соответствуют указанному регулярному выражению.
- 
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true,
+  },
+  "rules": {
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^on[A-Z][a-z]*$" }],
+  },
+}

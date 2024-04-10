@@ -27,6 +27,3 @@ module.exports = {
     ],
   },
 };
-
-
-// yarn build:webpack
