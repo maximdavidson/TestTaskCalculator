@@ -3,8 +3,8 @@
 }
 
 .calculator {
-  flex: 4;
-  margin-right: 20px; /* Регулируйте отступ справа по желанию */
+  flex: 3;
+  margin-right: 20px;
 }
 
 .history {

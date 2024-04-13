@@ -1,45 +1,58 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import c from './Keypad.module.css'
+import c from './Keypad.module.css';
 
 function Keypad({ onButtonClick }) {
-  const [selectedButton, setSelectedButton] = useState(null);
-  const buttons = ['C','7', '8', '9', '*', '-',  '4', '5', '6', '/', '+', '1', '2', '3', '=', '.', '+/-', '0', '%', 'CE']
+	const [selectedButton, setSelectedButton] = useState(null);
+	const buttons = [
+		'C',
+		'7',
+		'8',
+		'9',
+		'*',
+		'-',
+		'4',
+		'5',
+		'6',
+		'/',
+		'+',
+		'1',
+		'2',
+		'3',
+		'=',
+		'.',
+		'+/-',
+		'0',
+		'%',
+		'CE',
+	];
 
-  const handleClick = (button) => {
-    try {
-      setSelectedButton(button);
-      onButtonClick(button);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-  
-  const toggleSign = () => {
-    try {
-      onButtonClick('+/-');
-    } catch (error) {
-      console.error(error);
-    }
-  }
+	const handleClick = (button) => {
+		setSelectedButton(button);
+		onButtonClick(button);
+	};
 
-  return (
-    <div className={c.wrapper}>
-      {buttons.map(button => (
-        <button 
-          key={button} 
-          className={button === selectedButton ? c.selectedButton : c.button} 
-          onClick={button === '+/-' ? toggleSign : () => handleClick(button)}
-        >
-          {button}
-        </button>
-      ))}
-    </div>
-  );
+	const toggleSign = () => {
+		onButtonClick('+/-');
+	};
+
+	return (
+		<div className={c.wrapper}>
+			{buttons.map((button) => (
+				<button
+					key={button}
+					className={button === selectedButton ? c.selectedButton : c.button}
+					onClick={button === '+/-' ? toggleSign : () => handleClick(button)}
+				>
+					{button}
+				</button>
+			))}
+		</div>
+	);
 }
 
 Keypad.propTypes = {
-  onButtonClick: PropTypes.func.isRequired,
+	onButtonClick: PropTypes.func.isRequired,
 };
 
 export default Keypad;
