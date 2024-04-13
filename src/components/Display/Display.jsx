@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import c from './Display.module.css';
+import { DisplayText } from './styled';
 
 class Display extends React.Component {
 	render() {
 		return (
 			<div>
-				<p className={c.disp} id="display">
-					{this.props.displayValue}
-				</p>
+				<DisplayText id="display">{this.props.displayValue}</DisplayText>
 			</div>
 		);
 	}

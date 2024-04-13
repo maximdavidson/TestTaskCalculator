@@ -6,11 +6,16 @@ import {
 	PerformOperationCommand,
 	ResetCommand,
 } from '@commands/Calculator';
-import c from './CalculatorComponent.module.css';
 import History from '@components/History/History';
 import ControlPanel from '@components/History/ControlPanel';
 import { useHistoryContext } from '@components/History/HistoryContext';
 import calculate from './Calculate';
+import {
+	CalculatorContainer,
+	CalculatorWrapper,
+	HistoryWrapper,
+	TogglePositionWrapper,
+} from './styled';
 
 function CalculatorComponent() {
 	const [displayValue, setDisplayValue] = useState('0');
@@ -64,8 +69,8 @@ function CalculatorComponent() {
 			}
 		} else if (buttonValue === '+/-') {
 			if (displayValue !== '0') {
-				setDisplayValue((prevValue) => (parseFloat(prevValue) * -1).toString());
-				setInputSequence((prev) => (parseFloat(prev) * -1).toString());
+				setDisplayValue((prevValue) => parseFloat(prevValue) * -1);
+				setInputSequence((prev) => parseFloat(prev) * -1);
 			}
 			return;
 		} else if ('%'.includes(buttonValue)) {
@@ -136,19 +141,19 @@ function CalculatorComponent() {
 	};
 
 	return (
-		<div className={c.calculator_container}>
-			<div className={c.calculator}>
+		<CalculatorContainer>
+			<CalculatorWrapper>
 				<Display displayValue={inputSequence || displayValue} />
 				<Keypad onButtonClick={handleButtonClick} />
-			</div>
-			<div className={c.history}>
-				<div className={c.toggle_position}>
+			</CalculatorWrapper>
+			<HistoryWrapper>
+				<TogglePositionWrapper>
 					<h2>History</h2>
 					<ControlPanel onToggleHistory={toggleHistoryVisibility} />
-				</div>
+				</TogglePositionWrapper>
 				{isHistoryVisible && <History history={history} />}
-			</div>
-		</div>
+			</HistoryWrapper>
+		</CalculatorContainer>
 	);
 }
 

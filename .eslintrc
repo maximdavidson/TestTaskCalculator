@@ -1,12 +1,15 @@
 {
-  "parser": "@babel/eslint-parser",
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
-  "env": {
-    "browser": true,
-    "node": true,
-    "es6": true,
-  },
-  "rules": {
-    "no-unused-vars": ["error", { "argsIgnorePattern": "^on[A-Z][a-z]*$" }],
-  },
+	"parser": "@babel/eslint-parser",
+	"extends": ["eslint:recommended", "plugin:react/recommended"],
+	"env": {
+		"browser": true,
+		"node": true,
+		"es6": true,
+	},
+	"plugins": ["simple-import-sort"],
+	"rules": {
+		"no-unused-vars": ["error", { "argsIgnorePattern": "^on[A-Z][a-z]*$" }],
+		"simple-import-sort/imports": "error",
+		"simple-import-sort/exports": "error",
+	},
 }

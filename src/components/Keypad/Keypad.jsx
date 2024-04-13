@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import c from './Keypad.module.css';
+import { Wrapper, Button, SelectedButton } from './styled';
 
 function Keypad({ onButtonClick }) {
 	const [selectedButton, setSelectedButton] = useState(null);
@@ -37,17 +37,25 @@ function Keypad({ onButtonClick }) {
 	};
 
 	return (
-		<div className={c.wrapper}>
-			{buttons.map((button) => (
-				<button
-					key={button}
-					className={button === selectedButton ? c.selectedButton : c.button}
-					onClick={button === '+/-' ? toggleSign : () => handleClick(button)}
-				>
-					{button}
-				</button>
-			))}
-		</div>
+		<Wrapper>
+			{buttons.map((button) =>
+				button === selectedButton ? (
+					<SelectedButton
+						key={button}
+						onClick={button === '+/-' ? toggleSign : () => handleClick(button)}
+					>
+						{button}
+					</SelectedButton>
+				) : (
+					<Button
+						key={button}
+						onClick={button === '+/-' ? toggleSign : () => handleClick(button)}
+					>
+						{button}
+					</Button>
+				),
+			)}
+		</Wrapper>
 	);
 }
 
