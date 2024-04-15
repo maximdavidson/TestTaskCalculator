@@ -6,10 +6,16 @@
 		"node": true,
 		"es6": true,
 	},
-	"plugins": ["simple-import-sort"],
-	"rules": {
-		"no-unused-vars": ["error", { "argsIgnorePattern": "^on[A-Z][a-z]*$" }],
-		"simple-import-sort/imports": "error",
-		"simple-import-sort/exports": "error",
+	// "plugins": ["simple-import-sort"],
+	// "rules": {
+	// 	"no-unused-vars": ["error", { "argsIgnorePattern": "^on[A-Z][a-z]*$" }],
+	// 	"simple-import-sort/imports": "error",
+	// 	"simple-import-sort/exports": "error",
+	// 	"sort-imports": "off",
+	// },
+	"settings": {
+		"react": {
+			"version": "detect",
+		},
 	},
 }
