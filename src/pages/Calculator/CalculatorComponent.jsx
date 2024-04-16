@@ -2,6 +2,7 @@ import {
 	PerformOperationCommand,
 	ResetCommand,
 	SelectOperatorCommand,
+	BracketCommand,
 } from '@commands/Calculator';
 import Display from '@components/Display/Display';
 import ControlPanel from '@components/History/ControlPanel';
@@ -25,6 +26,7 @@ import {
 	selectOperator,
 	performOperation,
 	reset,
+	processBracket,
 } from './calculatorFunctions';
 
 function CalculatorComponent() {
@@ -71,11 +73,15 @@ function CalculatorComponent() {
 	const handleReset = () =>
 		reset(setDisplayValue, setInputSequence, setValue, setOperator);
 
+	const handleProcessBracket = (bracket) =>
+		processBracket(bracket, displayValue, setDisplayValue, setInputSequence);
+
 	const calculator = {
 		addNumber: handleAddNumber,
 		selectOperator: handleSelectOperator,
 		performOperation: handlePerformOperation,
 		reset: handleReset,
+		processBracket: handleProcessBracket,
 	};
 
 	const handleButtonClick = (buttonValue) => {
@@ -133,12 +139,22 @@ function CalculatorComponent() {
 				buttonValue,
 			);
 			selectOperatorCommand.execute();
+		} else if (buttonValue === '(' || buttonValue === ')') {
+			const bracketCommand = new BracketCommand(
+				calculator,
+				buttonValue,
+				displayValue,
+				operator,
+				history,
+			);
+			bracketCommand.execute();
 		}
 
 		if (
 			buttonValue !== '=' &&
 			buttonValue !== 'C' &&
 			buttonValue !== 'CE' &&
+			buttonValue !== '(' &&
 			buttonValue !== '.'
 		) {
 			setInputSequence((prev) => prev + buttonValue);

@@ -64,3 +64,38 @@ export const reset = (
 	setValue(null);
 	setOperator(null);
 };
+
+export const processBracket = (
+	bracket,
+	displayValue,
+	setDisplayValue,
+	setInputSequence,
+	setValue,
+	setOperator,
+	addHistoryItem,
+	history,
+	setHistory,
+) => {
+	if (bracket === '(') {
+		setInputSequence((prev) => prev + '(');
+	} else if (bracket === ')' && displayValue) {
+		const lastOpenBracketIndex = displayValue.lastIndexOf('(');
+		if (lastOpenBracketIndex !== -1) {
+			const expressionInsideBrackets = displayValue.slice(
+				lastOpenBracketIndex + 1,
+			);
+			setInputSequence((prev) => prev.slice(0, lastOpenBracketIndex));
+			performOperation(
+				null,
+				null,
+				expressionInsideBrackets,
+				setDisplayValue,
+				setValue,
+				setOperator,
+				addHistoryItem,
+				history,
+				setHistory,
+			);
+		}
+	}
+};

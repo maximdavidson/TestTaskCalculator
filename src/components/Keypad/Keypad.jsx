@@ -25,6 +25,8 @@ function Keypad({ onButtonClick }) {
 		'0',
 		'%',
 		'CE',
+		'(',
+		')',
 	];
 
 	const handleClick = (button) => {
@@ -34,6 +36,10 @@ function Keypad({ onButtonClick }) {
 
 	const toggleSign = () => {
 		onButtonClick('+/-');
+	};
+
+	const handleBracketClick = (bracket) => {
+		onButtonClick(bracket);
 	};
 
 	return (
@@ -46,6 +52,10 @@ function Keypad({ onButtonClick }) {
 					>
 						{button}
 					</SelectedButton>
+				) : button === '(' || button === ')' ? (
+					<Button key={button} onClick={() => handleBracketClick(button)}>
+						{button}
+					</Button>
 				) : (
 					<Button
 						key={button}

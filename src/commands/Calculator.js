@@ -37,4 +37,31 @@ class ResetCommand extends Command {
 	}
 }
 
-export { SelectOperatorCommand, PerformOperationCommand, ResetCommand };
+// Команда скобок
+
+class BracketCommand extends Command {
+	constructor(calculator, bracket, value, operator, history) {
+		super();
+		this.calculator = calculator;
+		this.bracket = bracket;
+		this.value = value;
+		this.operator = operator;
+		this.history = history;
+	}
+
+	execute() {
+		this.calculator.processBracket(
+			this.bracket,
+			this.value,
+			this.operator,
+			this.history,
+		);
+	}
+}
+
+export {
+	SelectOperatorCommand,
+	PerformOperationCommand,
+	ResetCommand,
+	BracketCommand,
+};
