@@ -1,8 +1,9 @@
-import React from 'react';
-import { ThemeContext } from '@theme/ThemeContext';
 import { HistoryContext } from '@components/History/HistoryContext';
+import { ThemeContext } from '@theme/ThemeContext';
+import React from 'react';
+
 import Snackbar from './Snackbar';
-import { Wrapper, Title, Select, Option, Button } from './styled';
+import { Button,Option, Select, Title, Wrapper } from './styled';
 
 class Settings extends React.Component {
 	static contextType = ThemeContext;

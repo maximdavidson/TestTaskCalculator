@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { HeaderContainer, Title, Navigation, StyledLink } from './styled';
+
+import { HeaderContainer, Navigation, StyledLink,Title } from './styled';
 
 class Header extends Component {
 	render() {

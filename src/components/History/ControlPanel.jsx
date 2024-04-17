@@ -1,6 +1,7 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
+import React from 'react';
+import { IoIosArrowDown,IoIosArrowUp } from 'react-icons/io';
+
 import { ToggleButton } from './styled';
 
 class ControlPanel extends React.Component {

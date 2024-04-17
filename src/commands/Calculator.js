@@ -60,8 +60,8 @@ class BracketCommand extends Command {
 }
 
 export {
-	SelectOperatorCommand,
+	BracketCommand,
 	PerformOperationCommand,
 	ResetCommand,
-	BracketCommand,
+	SelectOperatorCommand,
 };

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Wrapper, Button, SelectedButton } from './styled';
+import React, { useState } from 'react';
+
+import { Button, SelectedButton,Wrapper } from './styled';
 
 function Keypad({ onButtonClick }) {
 	const [selectedButton, setSelectedButton] = useState(null);

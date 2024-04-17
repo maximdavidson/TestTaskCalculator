@@ -1,15 +1,16 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
 import './App.css';
+
 import Header from '@components/Header/Header';
+import { HistoryProvider } from '@components/History/HistoryContext';
+import ErrorBoundary from '@error/ErrorBoundary';
 import CalculatorComponent from '@pages/Calculator/CalculatorComponent';
 import Settings from '@pages/Settings/Setting';
 import { GlobalStyles } from '@theme/GlobalStyles';
-import { lightTheme, darkTheme } from '@theme/theme';
-import { ThemeProvider as StyledThemeProvider } from 'styled-components';
+import { darkTheme,lightTheme } from '@theme/theme';
 import { useTheme } from '@theme/ThemeContext';
-import { HistoryProvider } from '@components/History/HistoryContext';
-import ErrorBoundary from '@error/ErrorBoundary';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 
 function App() {
 	const { theme } = useTheme();
