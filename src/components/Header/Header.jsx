@@ -7,8 +7,8 @@ class Header extends Component {
 			<HeaderContainer>
 				<Title>Calculator App</Title>
 				<Navigation>
-					<StyledLink to="/home">Home</StyledLink>
-					<StyledLink to="/settings">Settings</StyledLink>
+					<StyledLink to="/home">Home FC</StyledLink>
+					<StyledLink to="/settings">Settings CC</StyledLink>
 				</Navigation>
 			</HeaderContainer>
 		);

@@ -1,4 +1,5 @@
 import calculate from './Calculate';
+import calculateExpression from './Parse';
 
 export const addNumber = (
 	number,
@@ -70,32 +71,26 @@ export const processBracket = (
 	displayValue,
 	setDisplayValue,
 	setInputSequence,
-	setValue,
-	setOperator,
-	addHistoryItem,
-	history,
-	setHistory,
 ) => {
 	if (bracket === '(') {
 		setInputSequence((prev) => prev + '(');
 	} else if (bracket === ')' && displayValue) {
+		// Находим индекс последней открывающей скобки
 		const lastOpenBracketIndex = displayValue.lastIndexOf('(');
 		if (lastOpenBracketIndex !== -1) {
+			// Получаем выражение внутри скобок
 			const expressionInsideBrackets = displayValue.slice(
 				lastOpenBracketIndex + 1,
 			);
-			setInputSequence((prev) => prev.slice(0, lastOpenBracketIndex));
-			performOperation(
-				null,
-				null,
+			// Вычисляем результат выражения в скобках
+			const resultInsideBrackets = calculateExpression(
 				expressionInsideBrackets,
-				setDisplayValue,
-				setValue,
-				setOperator,
-				addHistoryItem,
-				history,
-				setHistory,
 			);
+			// Заменяем выражение в скобках его результатом
+			const newDisplayValue =
+				displayValue.slice(0, lastOpenBracketIndex) + resultInsideBrackets;
+			setDisplayValue(newDisplayValue);
+			setInputSequence(newDisplayValue);
 		}
 	}
 };

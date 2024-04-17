@@ -107,6 +107,24 @@ function CalculatorComponent() {
 			);
 			selectOperatorCommand.execute();
 		} else if (buttonValue === '=') {
+			// Если есть открытая скобка, выполняем операцию внутри скобок
+			if (inputSequence.includes('(')) {
+				const lastOpenBracketIndex = inputSequence.lastIndexOf('(');
+				const expressionInsideBrackets = inputSequence.slice(
+					lastOpenBracketIndex + 1,
+				);
+				processBracket(
+					')',
+					expressionInsideBrackets,
+					setDisplayValue,
+					setInputSequence,
+				);
+				// После операции внутри скобок сохраняем результат для последующей операции
+				setOperator(null);
+				// Значение для последующей операции равно результату внутри скобок
+				setValue(parseFloat(displayValue));
+			}
+			// После операции внутри скобок выполняем основную операцию
 			const performOperationCommand = new PerformOperationCommand(calculator);
 			performOperationCommand.execute();
 			setInputSequence('');
