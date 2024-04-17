@@ -7,6 +7,11 @@ export const Wrapper = styled.div`
 	gap: 40px;
 	padding-top: 30px;
 	padding-left: 100px;
+
+	@media (max-width: 431px) {
+		padding-left: 10px;
+		gap: 20px;
+	}
 `;
 
 export const Button = styled.button`
@@ -22,6 +27,11 @@ export const Button = styled.button`
 
 	&:hover {
 		background-color: #6b6b6b;
+	}
+
+	@media (max-width: 431px) {
+		width: 80%;
+		padding: 20px;
 	}
 `;
 

@@ -1,33 +1,33 @@
 import {
+	BracketCommand,
 	PerformOperationCommand,
 	ResetCommand,
 	SelectOperatorCommand,
-	BracketCommand,
 } from '@commands/Calculator';
 import Display from '@components/Display/Display';
 import ControlPanel from '@components/History/ControlPanel';
 import History from '@components/History/History';
 import { useHistoryContext } from '@components/History/HistoryContext';
 import Keypad from '@components/Keypad/Keypad';
+import {
+	HISTORY_DEFAULT_VISIBILITY,
+	MAX_DISPLAY_LENGTH,
+} from '@constants/calculator';
 import React, { useState } from 'react';
 
+import {
+	addNumber,
+	performOperation,
+	processBracket,
+	reset,
+	selectOperator,
+} from './calculatorFunctions';
 import {
 	CalculatorContainer,
 	CalculatorWrapper,
 	HistoryWrapper,
 	TogglePositionWrapper,
 } from './styled';
-import {
-	MAX_DISPLAY_LENGTH,
-	HISTORY_DEFAULT_VISIBILITY,
-} from '@constants/calculator';
-import {
-	addNumber,
-	selectOperator,
-	performOperation,
-	reset,
-	processBracket,
-} from './calculatorFunctions';
 
 function CalculatorComponent() {
 	const [displayValue, setDisplayValue] = useState('0');
@@ -118,6 +118,11 @@ function CalculatorComponent() {
 					expressionInsideBrackets,
 					setDisplayValue,
 					setInputSequence,
+					setValue,
+					setOperator,
+					addHistoryItem,
+					history,
+					setHistory,
 				);
 				// После операции внутри скобок сохраняем результат для последующей операции
 				setOperator(null);
